@@ -20,59 +20,64 @@ load("./RData/03_env.RData")
 ### load data ###
 #################
 
-# v4v5 counts
-month_asvs <- read.csv("./Data/Communities/MonthSeries_V4V5_counts.csv")
-rownames(month_asvs) <- month_asvs$Sample_name
-month_asvs <- month_asvs[-1]
+# # v4v5 counts
+# month_asvs <- read.csv("./Data/Communities/MonthSeries_V4V5_counts.csv")
+# rownames(month_asvs) <- month_asvs$Sample_name
+# month_asvs <- month_asvs[-1]
+# 
+# cities_asvs <- read.csv("./Data/Communities/Cities_V4V5_counts.csv")
+# rownames(cities_asvs) <- cities_asvs$Sample_name
+# cities_asvs <- cities_asvs[-1]
+# 
+# neigh_asvs <- read.csv("./Data/Communities/Neighborhoods_V4V5_counts.csv")
+# rownames(neigh_asvs) <- neigh_asvs$Sample_name
+# neigh_asvs <- neigh_asvs[-1]
+# 
+# 
+# # combine
+# counts_v4v5 <- rbind(month_asvs, cities_asvs, neigh_asvs)
+# rm(month_asvs, cities_asvs, neigh_asvs)
+# 
+# 
+# # v4 counts
+# counts_v4 <- read.csv("./Data/Communities/WeekSeries_V4_counts.csv")
+# rownames(counts_v4) <- counts_v4$Sample_name
+# counts_v4 <- counts_v4[-1]
+# 
+# 
+# # convert to relative abundances
+# relabun_v4v5 <- counts_v4v5 / rowSums(counts_v4v5)
+# relabun_v4 <- counts_v4 / rowSums(counts_v4)
+# 
+# 
+# # sample info
+# time_info <- read.csv("./Data/Metadata/TimeSeries_sample_info.csv")
+# cities_info <- read.csv("./Data/Metadata/Cities_sample_info.csv")
+# neigh_info <- read.csv("./Data/Metadata/Neighborhoods_sample_info.csv")
+# 
+# 
+# # taxonomy
+# taxa_v4v5 <- read.csv("./Data/Communities/All_V4V5_taxonomy.csv")
+# taxa_v4 <- read.csv("./Data/Communities/WeekSeries_V4_taxonomy.csv")
+# 
+# 
+# # human asvs from lamartina 2021
+# human_asvs <- read.csv("./Data/Communities/V4V5_bodysite_associations.csv")
+# 
+# 
+# # ddPCR
+# args <- read.csv("./RData/02_ddPCR_conversions_uniq.csv")
+# 
+# 
+# # create arg abundance matrix
+# args.d <- dcast(Sample_name ~ Target, value.var = "copiespermL", data = args)
+# rownames(args.d) <- args.d$Sample_name
+# args.d <- args.d[-1]
+# 
+#
+# save env
+# save.image("./RData/03_env.RData")
 
-cities_asvs <- read.csv("./Data/Communities/Cities_V4V5_counts.csv")
-rownames(cities_asvs) <- cities_asvs$Sample_name
-cities_asvs <- cities_asvs[-1]
-
-neigh_asvs <- read.csv("./Data/Communities/Neighborhoods_V4V5_counts.csv")
-rownames(neigh_asvs) <- neigh_asvs$Sample_name
-neigh_asvs <- neigh_asvs[-1]
-
-
-# combine
-counts_v4v5 <- rbind(month_asvs, cities_asvs, neigh_asvs)
-rm(month_asvs, cities_asvs, neigh_asvs)
-
-
-# v4 counts
-counts_v4 <- read.csv("./Data/Communities/WeekSeries_V4_counts.csv")
-rownames(counts_v4) <- counts_v4$Sample_name
-counts_v4 <- counts_v4[-1]
-
-
-# convert to relative abundances
-relabun_v4v5 <- counts_v4v5 / rowSums(counts_v4v5)
-relabun_v4 <- counts_v4 / rowSums(counts_v4)
-
-
-# sample info
-time_info <- read.csv("./Data/Metadata/TimeSeries_sample_info.csv")
-cities_info <- read.csv("./Data/Metadata/Cities_sample_info.csv")
-neigh_info <- read.csv("./Data/Metadata/Neighborhoods_sample_info.csv")
-
-
-# taxonomy
-taxa_v4v5 <- read.csv("./Data/Communities/All_V4V5_taxonomy.csv")
-taxa_v4 <- read.csv("./Data/Communities/WeekSeries_V4_taxonomy.csv")
-
-
-# human asvs from lamartina 2021
-human_asvs <- read.csv("./Data/Communities/V4V5_bodysite_associations.csv")
-
-
-# ddPCR
-args <- read.csv("./RData/02_ddPCR_conversions_uniq.csv")
-
-
-# create arg abundance matrix
-args.d <- dcast(Sample_name ~ Target, value.var = "copiespermL", data = args)
-rownames(args.d) <- args.d$Sample_name
-args.d <- args.d[-1]
 
 
 
