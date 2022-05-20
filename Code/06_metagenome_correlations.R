@@ -377,26 +377,19 @@ arg_info$altARG <- gsub("; ", "_", arg_info$altARG)
 arg_info$altARG <- gsub("-", "", gsub(" ", "", arg_info$altARG))
 
 
-# subset by arg category
+# subset by arg category, add arg info
 int_arg.ls <- list()
 for(i in unique(arg_info$altARG)) {
-  int_arg.ls[[i]] <- int_arg[arg_info$altARG == i,]
-}
-
-
-# add arg info
-for(i in names(int_arg.ls)) {
-  temp <- arg_info[c(1,6,7)]
-  temp <- unique(temp[temp$Gene_ID %in% int_arg.ls[[i]]$Gene_ID,])
-  int_arg.ls[[i]] <- merge(int_arg.ls[[i]], temp, by = "Gene_ID")
+  temp <- arg_info[arg_info$altARG == i, c(1,6,7)]
+  int_arg.ls[[i]] <- int_arg[int_arg$Gene_ID %in% temp$Gene_ID,]
+  int_arg.ls[[i]] <- merge(temp, int_arg.ls[[i]], by = "Gene_ID")
   rm(temp)
 }
 
 
-
 # add int info
 for(i in names(int_arg.ls)) {
-  colnames(int_arg.ls[[i]]) <- c("ARG", "Gene_ID", "Dist", "ARG_name", "ARG_category")
+  colnames(int_arg.ls[[i]]) <- c("ARG", "ARG_name", "ARG_category", "Gene_ID", "Dist")
   temp <- int_info[c(1,6,7)]
   temp <- unique(temp[temp$Gene_ID %in% int_arg.ls[[i]]$Gene_ID,])
   int_arg.ls[[i]] <- merge(int_arg.ls[[i]], temp, by = "Gene_ID")
@@ -414,6 +407,7 @@ for(i in names(int_arg.ls)) {
 
 # cleanup
 rm(int_arg.ls, int_arg, int_arg.cor)
+
 
 
 
